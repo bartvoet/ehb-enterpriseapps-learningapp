@@ -13,6 +13,24 @@
 
     <div sec:authorize="isAuthenticated()">
         Welcome <span sec:authentication="name"></span>
+        <table>
+            <thead>
+            <tr>
+                <th> Name </th>
+                <th> Id </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${series.empty}">
+                <td colspan="2"> No series... </td>
+            </tr>
+            <tr th:each="serie : ${series}">
+                <td><span th:text="${serie.name}"> Title </span></td>
+                <td><span th:text="${serie.id}"> Author </span></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="/ui/user/series/addserie">addserie</a>
     </div>
 
 

@@ -19,8 +19,8 @@ public class UserRegistrationController {
     private PasswordEncoder encoder;
 
     @GetMapping("/")
-    public String showUsers(Model model) {
-        model.addAttribute("users", userRepository.findAll());
+    public String goToHome(Model model) {
+        //model.addAttribute("users", userRepository.findAll());
         return "home";
     }
 

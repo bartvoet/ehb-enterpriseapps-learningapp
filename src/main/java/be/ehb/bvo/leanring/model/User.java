@@ -10,6 +10,10 @@ public class User {
   @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
+  public List<QuestionSeries> getQuestions() {
+    return questions;
+  }
+
   @OneToMany(cascade = CascadeType.ALL)
   private List<QuestionSeries> questions;
 
@@ -51,4 +55,7 @@ public class User {
     this.email = email;
   }
 
+  public void addSeries(QuestionSeries newserie) {
+    this.questions.add(newserie);
+  }
 }
