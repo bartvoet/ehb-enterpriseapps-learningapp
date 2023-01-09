@@ -8,9 +8,8 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Form</h2>
-<span th:text="${questionandsize.size}"/> answers expected<br/>
-Question: <span th:text="${questionandanswer.question}"/><br/>
+<h3>Next question: <span th:text="${questionandanswer.question}"/></h3>
+(<span th:text="${questionandsize.size}"/> answers expected)<br/>
 
 <form action="#" th:action="@{/ui/user/session/{id}/question(id = ${qsession.id})}" th:object="${questionandanswer}" method="post">
         <p>Answers: <input type="text" th:field="*{answers}"/></p>

@@ -11,7 +11,7 @@
 
 <h2>Serie with name "<span th:text="${currentseries.name}"/>"</h2>
 
-<table>
+<table class="table">
     <thead>
     <tr>
         <th> Question</th>
@@ -33,9 +33,11 @@
 
 <form action="#" th:action="@{/ui/user/series/addquestion/{id}(id = ${currentseries.id})}"
       th:object="${newquestion}" method="post">
+    <div class="form-group">
     <p>Question: <input type="text" th:field="*{question}"/></p>
     <p>Answers: <input type="text" th:field="*{answers}"/></p>
     <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </div>
 </form>
 
 

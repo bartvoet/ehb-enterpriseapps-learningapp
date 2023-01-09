@@ -9,19 +9,20 @@
 </head>
 <body>
 
-    <div sec:authorize="isAnonymous()">
-      <a href="/ui/user/create">Create a user</a><br/>
+    <span sec:authorize="isAnonymous()">
+      <h2>Welcome, please log in or register first</h2>
+      <a href="/ui/user/create">Register yourself as a user</a><br/>
       <a href="login">Login</a>
-    </div>
+    </span>
 
-    <div sec:authorize="isAuthenticated()">
+    <span sec:authorize="isAuthenticated()">
         <h2>Welcome <span sec:authentication="name"></span></h2>
-        <table>
+        <table class="table">
             <thead>
             <tr>
-                <th> Name </th>
-                <th> Go to </th>
-                <th> Start session </th>
+                <th> Name series</th>
+                <th> Go to series </th>
+                <th> Start a new session </th>
             </tr>
             </thead>
             <tbody>
@@ -35,9 +36,12 @@
             </tr>
             </tbody>
         </table>
+        <p/>
+        <p/>
         <a href="/ui/user/series/addserie">Configure a new serie of questions</a>
-    </div>
-    <br/>
-    <a href="/logout">Log out</a>
+        -
+        <a href="/logout">Log out</a>
+    </span>
+
 </body>
 </html>
