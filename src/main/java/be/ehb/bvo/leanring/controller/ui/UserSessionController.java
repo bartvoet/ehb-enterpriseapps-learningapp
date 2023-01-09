@@ -12,11 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.security.Principal;
 
 @Controller
 @RequestMapping(path="ui/user/session")
 public class UserSessionController {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserSessionController.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -47,7 +52,7 @@ public class UserSessionController {
                 model.addAttribute("qsession",session);
             }
         } else {
-            System.out.println("Not logged in...");
+            logger.error("Not logged in...");
         }
         return "questionsession";
     }
@@ -58,11 +63,11 @@ public class UserSessionController {
 
         QuestionSession session = sessionRepository.findById(id).get();
         QuestionFeedback feedback = session.validateQuestion(newserie);
-        System.out.println(feedback.isValid());
-        System.out.println(feedback.getFeedback());
+        logger.info("Feedback: " + feedback.isValid());
+        logger.info(feedback.getFeedback());
 
         if(session.hasEnded()) {
-            System.out.println("Session ended...");
+            logger.info("Session ended...");
             return new ModelAndView(new RedirectView("/"));
         } else {
             session.askNextQuestion(lqi);

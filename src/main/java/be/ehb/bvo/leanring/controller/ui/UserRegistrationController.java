@@ -2,6 +2,8 @@ package be.ehb.bvo.leanring.controller.ui;
 
 import be.ehb.bvo.leanring.model.User;
 import be.ehb.bvo.leanring.repo.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping(path="ui/user")
 public class UserRegistrationController {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserRegistrationController.class);
 
     @Autowired
     private UserRepository userRepository;

@@ -7,6 +7,8 @@ import be.ehb.bvo.leanring.model.User;
 import be.ehb.bvo.leanring.repo.QuestionRepository;
 import be.ehb.bvo.leanring.repo.QuestionSeriesRepository;
 import be.ehb.bvo.leanring.repo.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ import java.security.Principal;
 @Controller
 @RequestMapping(path="ui/user/series")
 public class UserSeriesController {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserSeriesController.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -41,7 +45,7 @@ public class UserSeriesController {
                 userRepository.save(user);
             }
         } else {
-            System.out.println("Not logged in...");
+            logger.error("Not logged in...");
         }
         return new RedirectView("/");
     }
