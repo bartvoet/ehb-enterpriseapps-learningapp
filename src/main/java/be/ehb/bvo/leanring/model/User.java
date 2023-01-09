@@ -2,6 +2,7 @@ package be.ehb.bvo.leanring.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -15,7 +16,10 @@ public class User {
   }
 
   @OneToMany(cascade = CascadeType.ALL)
-  private List<QuestionSeries> questions;
+  private List<QuestionSeries> questions  = new ArrayList<>();
+
+  @OneToMany(cascade = CascadeType.ALL)
+  private List<QuestionSession> questionsSessoions = new ArrayList<>();
 
   private String name;
 
@@ -57,5 +61,11 @@ public class User {
 
   public void addSeries(QuestionSeries newserie) {
     this.questions.add(newserie);
+  }
+
+  public QuestionSession addSession(QuestionSeries series) {
+    QuestionSession session = new QuestionSession().addSeries(series);
+    this.questionsSessoions.add(session);
+    return session;
   }
 }

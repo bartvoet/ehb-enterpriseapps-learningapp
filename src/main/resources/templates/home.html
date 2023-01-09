@@ -17,7 +17,8 @@
             <thead>
             <tr>
                 <th> Name </th>
-                <th> Id </th>
+                <th> Go to </th>
+                <th> Start session </th>
             </tr>
             </thead>
             <tbody>
@@ -27,14 +28,11 @@
             <tr th:each="serie : ${series}">
                 <td><span th:text="${serie.name}"> Title </span></td>
                 <td><a th:href="@{/ui/user/series/questionseriedetails/{id}(id = ${serie.id})}" th:text="'Go to ' +  ${serie.id}">Go to</a></td>
+                <td><a th:href="@{/ui/user/session/startsession(seriesId = ${serie.id})}" th:text="'Go to ' +  ${serie.id}">Go to</a></td>
             </tr>
             </tbody>
         </table>
         <a href="/ui/user/series/addserie">addserie</a>
     </div>
-
-
-
-
 </body>
 </html>
