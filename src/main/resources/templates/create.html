@@ -8,7 +8,7 @@
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h2>Create a user</h2>
+<h2><span th:text="#{user.create}"/></h2>
 <form action="#" th:action="@{/ui/user/create}" th:object="${newuser}" method="post">
     <p>User: <input type="text" th:field="*{name}" /></p>
     <p>Email: <input type="text" th:field="*{email}" /></p>

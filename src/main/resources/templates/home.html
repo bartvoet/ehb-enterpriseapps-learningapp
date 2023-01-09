@@ -16,7 +16,7 @@
     </span>
 
     <span sec:authorize="isAuthenticated()">
-        <h2>Welcome <span sec:authentication="name"></span></h2>
+        <h2><span th:text="#{greeting}"/> <span sec:authentication="name"></span></h2>
         <table class="table">
             <thead>
             <tr>

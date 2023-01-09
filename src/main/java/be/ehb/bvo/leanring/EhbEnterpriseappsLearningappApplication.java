@@ -10,4 +10,6 @@ public class EhbEnterpriseappsLearningappApplication {
         SpringApplication.run(EhbEnterpriseappsLearningappApplication.class, args);
     }
 
+
+
 }
