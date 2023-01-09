@@ -4,17 +4,29 @@ import be.ehb.bvo.leanring.algo.QuestionFeedback;
 import be.ehb.bvo.leanring.algo.QuestionInterface;
 import be.ehb.bvo.leanring.algo.QuestionPicker;
 import be.ehb.bvo.leanring.algo.RandomQuestionPicker;
+import jakarta.persistence.*;
 
 import java.util.*;
 
+@Entity
 public class QuestionSession {
 
-    private final QuestionPicker questionPicker;
-    private Set<Question> questions = new LinkedHashSet<>();
-    private List<Question> remainingQuestions = new ArrayList<>();
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Integer id;
 
-    private Question currentQuestion = null;
-    private Question previousQuestion = null;
+    @Transient
+    private final QuestionPicker questionPicker;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<ListQuestion> questions = new LinkedHashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<ListQuestion> remainingQuestions = new ArrayList<>();
+
+    @ManyToOne
+    private ListQuestion currentQuestion = null;
+
+    @ManyToOne
+    private ListQuestion previousQuestion = null;
 
     private boolean started;
     private Date startDate;
@@ -34,7 +46,7 @@ public class QuestionSession {
         return this;
     }
 
-    public QuestionSession addQuestion(Question question) {
+    public QuestionSession addQuestion(ListQuestion question) {
         if(started) {
            throw new IllegalStateException("session has started, no more questions can be added");
         }

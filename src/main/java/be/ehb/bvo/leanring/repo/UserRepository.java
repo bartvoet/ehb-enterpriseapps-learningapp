@@ -1,4 +1,4 @@
-package be.ehb.bvo.leanring;
+package be.ehb.bvo.leanring.repo;
 
 import be.ehb.bvo.leanring.model.User;
 import org.springframework.data.repository.CrudRepository;
