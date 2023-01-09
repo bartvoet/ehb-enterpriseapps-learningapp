@@ -29,6 +29,7 @@ public class UserRegistrationController {
 
     @PostMapping("/create")
     public String greetingSubmit(@ModelAttribute User newuser, Model model) {
+        userRepository.save(newuser);
         model.addAttribute("newuser", newuser);
         return "confirm";
     }
