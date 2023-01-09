@@ -14,11 +14,11 @@ public class HomeController {
     @GetMapping(value="/")
     @RequestMapping(value="/",method= RequestMethod.GET)
     public String hello(Principal principal){
-        if(principal != null) {
-            System.out.println(principal.getName());
-        } else {
-            System.out.println("Not logged in...");
-        }
+//        if(principal != null) {
+//            System.out.println(principal.getName());
+//        } else {
+//            System.out.println("Not logged in...");
+//        }
 
         return "home";
     }
