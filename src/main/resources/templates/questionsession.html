@@ -9,10 +9,10 @@
 </head>
 <body>
 <h3>Next question: <span th:text="${questionandanswer.question}"/></h3>
-(<span th:text="${questionandsize.size}"/> answers expected)<br/>
+(<span th:text="${questionandsize.size}"/> <span th:text="#{questionsession.answer.expected}"/>)<br/>
 
 <form action="#" th:action="@{/ui/user/session/{id}/question(id = ${qsession.id})}" th:object="${questionandanswer}" method="post">
-        <p>Answers: <input type="text" th:field="*{answers}"/></p>
+        <p><span th:text="#{questionsession.answer}"/>: <input type="text" th:field="*{answers}"/></p>
         <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
 </form>
 </body>

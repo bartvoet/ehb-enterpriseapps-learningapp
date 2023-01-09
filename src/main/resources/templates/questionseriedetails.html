@@ -9,33 +9,33 @@
 </head>
 <body>
 
-<h2>Serie with name "<span th:text="${currentseries.name}"/>"</h2>
+<h2><span th:text="#{questionseries.nameindication}"> "<span th:text="${currentseries.name}"/>"</h2>
 
 <table class="table">
     <thead>
     <tr>
-        <th> Question</th>
-        <th> Answers</th>
+        <th><span th:text="#{questionseries.questions}"/></th>
+        <th><span th:text="#{questionseries.answers}"/></th>
     </tr>
     </thead>
     <tbody>
     <tr th:if="${questions.empty}">
-        <td colspan="2"> No questions yet...</td>
+        <td colspan="2"> <span th:text="#{questionseries.noquestionsyet}"/></td>
     </tr>
     <tr th:each="question : ${questions}">
-        <td><span th:text="${question.question}"> Question </span></td>
-        <td><span th:text="${question.answers}"> Answer </span></td>
+        <td><span th:text="${question.question}"> <span th:text="#{questionseries.questions}"/> </span></td>
+        <td><span th:text="${question.answers}"> <span th:text="#{questionseries.answers}"/> </span></td>
     </tr>
     </tbody>
 </table>
 <p/>
-<h3>Add a new question:</h3>
+<h3><span th:text="#{questioneseries.add.question}"/>:</h3>
 
 <form action="#" th:action="@{/ui/user/series/addquestion/{id}(id = ${currentseries.id})}"
       th:object="${newquestion}" method="post">
     <div class="form-group">
-    <p>Question: <input type="text" th:field="*{question}"/></p>
-    <p>Answers: <input type="text" th:field="*{answers}"/></p>
+    <p><span th:text="#{questionseries.questions}"/>: <input type="text" th:field="*{question}"/></p>
+    <p><span th:text="#{questionseries.answers}"/>: <input type="text" th:field="*{answers}"/></p>
     <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
     </div>
 </form>
