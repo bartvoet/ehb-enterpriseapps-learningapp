@@ -1,7 +1,8 @@
-package be.ehb.bvo.leanring;
+package be.ehb.bvo.leanring.security;
 
 import be.ehb.bvo.leanring.model.User;
 import be.ehb.bvo.leanring.repo.UserRepository;
+import be.ehb.bvo.leanring.security.LearningUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException("Could not find user");
         }
 
-        return new MyUserDetails(user);
+        return new LearningUserDetails(user);
     }
 
 }

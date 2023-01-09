@@ -1,4 +1,4 @@
-package be.ehb.bvo.leanring;
+package be.ehb.bvo.leanring.controler.rest;
 
 import be.ehb.bvo.leanring.model.ListQuestion;
 import be.ehb.bvo.leanring.model.QuestionSeries;

@@ -1,4 +1,4 @@
-package be.ehb.bvo.leanring;
+package be.ehb.bvo.leanring.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

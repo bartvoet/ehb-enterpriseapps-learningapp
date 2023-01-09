@@ -1,4 +1,4 @@
-package be.ehb.bvo.leanring;
+package be.ehb.bvo.leanring.security;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,11 +8,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class MyUserDetails implements UserDetails {
+public class LearningUserDetails implements UserDetails {
 
     private User user;
 
-    public MyUserDetails(User user) {
+    public LearningUserDetails(User user) {
         this.user = user;
     }
 
