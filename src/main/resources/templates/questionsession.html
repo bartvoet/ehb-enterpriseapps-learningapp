@@ -1,13 +1,16 @@
 <!DOCTYPE HTML>
-<html xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>Getting Started: Handling Form Submission</title>
+    <title>Question</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Form</h1>
-<span th:text="${questionandsize.size}"/> answers expected
-<span th:text="${questionandanswer.question}"/>
+<h2>Form</h2>
+<span th:text="${questionandsize.size}"/> answers expected<br/>
+Question: <span th:text="${questionandanswer.question}"/><br/>
 
 <form action="#" th:action="@{/ui/user/session/{id}/question(id = ${qsession.id})}" th:object="${questionandanswer}" method="post">
         <p>Answers: <input type="text" th:field="*{answers}"/></p>

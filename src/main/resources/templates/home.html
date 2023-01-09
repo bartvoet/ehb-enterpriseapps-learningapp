@@ -2,7 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Learning-app</title>
+<!--    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>-->
+<!--    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>-->
+<!--    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>-->
 </head>
 <body>
 
@@ -12,7 +15,7 @@
     </div>
 
     <div sec:authorize="isAuthenticated()">
-        Welcome <span sec:authentication="name"></span>
+        <h2>Welcome <span sec:authentication="name"></span></h2>
         <table>
             <thead>
             <tr>
@@ -27,12 +30,14 @@
             </tr>
             <tr th:each="serie : ${series}">
                 <td><span th:text="${serie.name}"> Title </span></td>
-                <td><a th:href="@{/ui/user/series/questionseriedetails/{id}(id = ${serie.id})}" th:text="'Go to ' +  ${serie.id}">Go to</a></td>
-                <td><a th:href="@{/ui/user/session/startsession(seriesId = ${serie.id})}" th:text="'Go to ' +  ${serie.id}">Go to</a></td>
+                <td><a th:href="@{/ui/user/series/questionseriedetails/{id}(id = ${serie.id})}" th:text="'Edit the serie ' +  ${serie.id}">Go to</a></td>
+                <td><a th:href="@{/ui/user/session/startsession(seriesId = ${serie.id})}" th:text="'Start a question-session for ' +  ${serie.id}">Go to</a></td>
             </tr>
             </tbody>
         </table>
-        <a href="/ui/user/series/addserie">addserie</a>
+        <a href="/ui/user/series/addserie">Configure a new serie of questions</a>
     </div>
+    <br/>
+    <a href="/logout">Log out</a>
 </body>
 </html>

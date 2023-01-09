@@ -1,13 +1,16 @@
 <!DOCTYPE HTML>
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
-  <title>Getting Started: Handling Form Submission</title>
+  <title>User created</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+  <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>Result</h1>
+<h2>User has been created</h2>
 <p th:text="'name: ' + ${newuser.name}" />
 <p th:text="'mail:: ' + ${newuser.email}" />
-<a href="/greeting">Submit another message</a>
+<a href="/">Log in</a>
 </body>
 </html>
