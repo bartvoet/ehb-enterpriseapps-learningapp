@@ -15,6 +15,11 @@ public class QuestionSession {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
+    public Integer getId()
+    {
+        return id;
+    }
+
     @Transient
     private final QuestionPicker questionPicker;
     @ManyToMany(cascade = CascadeType.ALL)
