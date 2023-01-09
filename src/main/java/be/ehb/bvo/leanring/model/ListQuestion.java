@@ -29,6 +29,12 @@ public class ListQuestion extends Question {
         this.question = question;
     }
 
+    public ListQuestion(String question, List<String> answers) {
+        this();
+        this.question = question;
+        this.answers = answers;
+    }
+
     public ListQuestion withAnswers(String... answers) {
         List<String> listOfAnswers = Arrays.asList(answers);
         this.answers.addAll(listOfAnswers);
