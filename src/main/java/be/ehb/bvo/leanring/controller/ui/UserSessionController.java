@@ -45,7 +45,7 @@ public class UserSessionController {
                 session.startSession();
                 session.askNextQuestion(lqi);
                 model.addAttribute("questionandsize",lqi);
-                QuestionForm form = new QuestionForm();
+                QuestionForm form = new QuestionForm(lqi.getSize());
                 form.setQuestion(lqi.getQuestion());
                 model.addAttribute("questionandanswer",form);
                 userRepository.save(user);
@@ -72,7 +72,7 @@ public class UserSessionController {
         } else {
             session.askNextQuestion(lqi);
             model.addAttribute("questionandsize", lqi);
-            QuestionForm form = new QuestionForm();
+            QuestionForm form = new QuestionForm(lqi.getSize());
             form.setQuestion(lqi.getQuestion());
             model.addAttribute("questionandanswer", form);
             sessionRepository.save(session);

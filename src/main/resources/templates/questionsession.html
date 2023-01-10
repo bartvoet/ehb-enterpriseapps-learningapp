@@ -12,8 +12,15 @@
 (<span th:text="${questionandsize.size}"/> <span th:text="#{questionsession.answer.expected}"/>)<br/>
 
 <form action="#" th:action="@{/ui/user/session/{id}/question(id = ${qsession.id})}" th:object="${questionandanswer}" method="post">
-        <p><span th:text="#{questionsession.answer}"/>: <input type="text" th:field="*{answers}"/></p>
-        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+        <div class="form-group">
+        <label th:text="#{questionsession.answer}">Answer:</label>
+
+        <th:block th:each="item, itemStat : *{answerList}">
+            <p><input th:field="*{answerList[__${itemStat.index}__]}" class="form-"/></p>
+        </th:block>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-dark"/>
+        <input type="reset" value="Reset" class="btn btn-danger"/>
 </form>
 </body>
 </html>
