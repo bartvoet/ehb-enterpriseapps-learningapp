@@ -14,9 +14,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.security.Principal;
+import java.util.Arrays;
 
 @Controller
 @RequestMapping(path="ui/user/series")
@@ -68,6 +74,31 @@ public class UserSeriesController {
         ListQuestion newQuestion = new ListQuestion(question.getQuestion(), question.answersAsList());
         series.addQuestion(newQuestion);
         seriesRepository.save(series);
+        return "questionseriedetails";
+    }
+
+    @PostMapping("/addquestionscsv/{id}")
+    public String uploadCSV(@PathVariable Integer id, Model model, @RequestParam("file") MultipartFile file)
+    {
+        QuestionSeries series = seriesRepository.findById(id).orElseThrow(() -> new RuntimeException("id " + id +  " not found"));
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+            while(reader.ready()) {
+                String line = reader.readLine();
+                String[] tokens = line.split(";");
+                if(tokens.length >= 2 ) {
+                    ListQuestion question = new ListQuestion(tokens[0])
+                                                .withAnswers(Arrays.copyOfRange(
+                                                        tokens, 1, tokens.length));
+                    series.addQuestion(question);
+                }
+            }
+            seriesRepository.save(series);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        model.addAttribute("currentseries", series);
+        model.addAttribute("questions", series.getQuestions());
+        model.addAttribute("newquestion", new QuestionForm());
         return "questionseriedetails";
     }
 

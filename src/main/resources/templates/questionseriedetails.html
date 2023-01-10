@@ -41,6 +41,15 @@
 </form>
 
 
+<form action="#" th:action="@{/ui/user/series/addquestionscsv/{id}(id = ${currentseries.id})}"
+      th:object="${newquestion}" method="post" enctype="multipart/form-data">
+    <div class="form-group mt-3">
+        <label for="file">Select a CSV file</label>
+        <input type="file" name="file" class="form-control-file" id="file" accept=".csv">
+    </div>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+
 <a href="/">Back home</a>
 
 </body>
