@@ -9,20 +9,25 @@
 </head>
 <body>
 
-    <span sec:authorize="isAnonymous()">
+<span sec:authorize="isAnonymous()">
       <h2>Welcome, please log in or register first</h2>
-      <a href="/ui/user/create">Register yourself as a user</a><br/>
-      <a href="login">Login</a>
+
+<br/>
+            <a href="/ui/user/create" class="btn btn-info">Register yourself as a user</a>
+-
+           <a href="login" class="btn btn-info">Login</a>
+
+
     </span>
 
-    <span sec:authorize="isAuthenticated()">
+<span sec:authorize="isAuthenticated()">
         <h2><span th:text="#{greeting}"/> <span sec:authentication="name"></span></h2>
         <table class="table">
             <thead>
             <tr>
                 <th> Name series</th>
-                <th> Go to series </th>
-                <th> Start a new session </th>
+                <th> </th>
+                <th>  </th>
                 <th>  </th>
             </tr>
             </thead>
@@ -32,17 +37,22 @@
             </tr>
             <tr th:each="serie : ${series}">
                 <td><span th:text="${serie.name}"> Title </span></td>
-                <td><a th:href="@{/ui/user/series/questionseriedetails/{id}(id = ${serie.id})}" th:text="'Edit the serie ' +  ${serie.id}">Go to</a></td>
-                <td><a th:href="@{/ui/user/session/startsession(seriesId = ${serie.id})}" th:text="'Start a question-session for ' +  ${serie.id}">Go to</a></td>
-                <td><a th:href="@{/ui/user/series/removeserie/{seriesId}(seriesId = ${serie.id})}" class="btn btn-warning">Remove serie</a></td>
+                <td><a th:href="@{/ui/user/series/questionseriedetails/{id}(id = ${serie.id})}"
+                       th:text="'Edit the serie '"
+                       class="btn btn-primary">Go to</a></td>
+                <td><a th:href="@{/ui/user/session/startsession(seriesId = ${serie.id})}"
+                       th:text="'Start a question-session '"
+                       class="btn btn-primary">Go to</a></td>
+                <td><a th:href="@{/ui/user/series/removeserie/{seriesId}(seriesId = ${serie.id})}"
+                       class="btn btn-warning">Remove serie</a></td>
             </tr>
             </tbody>
         </table>
         <p/>
         <p/>
-        <a href="/ui/user/series/addserie">Configure a new serie of questions</a>
+        <a href="/ui/user/series/addserie" class="btn btn-info"> Configure a new serie of questions</a>
         -
-        <a href="/logout">Log out</a>
+        <a href="/logout" class="btn btn-info">Log out</a>
     </span>
 
 </body>
