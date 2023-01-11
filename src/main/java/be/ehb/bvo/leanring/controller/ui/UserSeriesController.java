@@ -7,6 +7,7 @@ import be.ehb.bvo.leanring.model.User;
 import be.ehb.bvo.leanring.repo.QuestionRepository;
 import be.ehb.bvo.leanring.repo.QuestionSeriesRepository;
 import be.ehb.bvo.leanring.repo.UserRepository;
+import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.Principal;
@@ -137,6 +139,33 @@ public class UserSeriesController {
         model.addAttribute("questions", series.getQuestions());
         model.addAttribute("newquestion", new QuestionForm());
         return "questionseriedetails";
+    }
+
+    @RequestMapping(value = "downloadasCSV/{id}")
+    public void downloadCSV(HttpServletResponse response, @PathVariable Integer id) throws IOException {
+        String csvFileName = "questions.csv";
+        response.setContentType("text/csv");
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"", csvFileName);
+        response.setHeader(headerKey, headerValue);
+
+        BufferedWriter writer = new BufferedWriter(response.getWriter());
+
+        QuestionSeries series = seriesRepository.findById(id).get();
+        writeSeriesAsCsv(writer, series);
+        writer.flush();
+    }
+
+    private static void writeSeriesAsCsv(BufferedWriter writer, QuestionSeries series) throws IOException {
+        for(ListQuestion question : series.getQuestions()) {
+            writer.write(question.getQuestion());
+            writer.write(";");
+            for(String answer : question.getAnswers()) {
+                writer.write(answer);
+                writer.write(";");
+            }
+            writer.newLine();
+        }
     }
 
 }

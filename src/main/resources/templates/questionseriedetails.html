@@ -46,6 +46,7 @@
                 <p>
                     <input type="submit" value="Upload" class="btn btn-dark"/>
                     <input type="reset" value="Reset" class="btn btn-danger"/>
+                    <a th:text="'Download current as csv'" th:href="@{/ui/user/series/downloadasCSV/{id}(id = ${currentseries.id})}" class="btn btn-dark"/>
                 </p>
             </form>
         </div>
