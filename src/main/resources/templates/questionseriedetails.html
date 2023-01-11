@@ -9,48 +9,79 @@
 </head>
 <body>
 
-<h2><span th:text="#{questionseries.nameindication}"> "<span th:text="${currentseries.name}"/>"</h2>
+<h2>
+    <span th:text="#{questionseries.nameindication}"/>
+    "<span th:text="${currentseries.name}"/>"
+</h2>
 
-<table class="table">
-    <thead>
-    <tr>
-        <th><span th:text="#{questionseries.questions}"/></th>
-        <th><span th:text="#{questionseries.answers}"/></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${questions.empty}">
-        <td colspan="2"> <span th:text="#{questionseries.noquestionsyet}"/></td>
-    </tr>
-    <tr th:each="question : ${questions}">
-        <td><span th:text="${question.question}"> <span th:text="#{questionseries.questions}"/> </span></td>
-        <td><span th:text="${question.answers}"> <span th:text="#{questionseries.answers}"/> </span></td>
-    </tr>
-    </tbody>
-</table>
-<p/>
-<h3><span th:text="#{questioneseries.add.question}"/>:</h3>
-
-<form action="#" th:action="@{/ui/user/series/addquestion/{id}(id = ${currentseries.id})}"
-      th:object="${newquestion}" method="post">
-    <div class="form-group">
-    <p><span th:text="#{questionseries.questions}"/>: <input type="text" th:field="*{question}"/></p>
-    <p><span th:text="#{questionseries.answers}"/>: <input type="text" th:field="*{answers}"/></p>
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h3><span th:text="#{questioneseries.add.question}"/>:</h3>
+            <form action="#" th:action="@{/ui/user/series/addquestion/{id}(id = ${currentseries.id})}"
+                  th:object="${newquestion}" method="post">
+                <div class="form-group">
+                    <p><span th:text="#{questionseries.questions}"/>: <input type="text" th:field="*{question}"/></p>
+                    <p><span th:text="#{questionseries.answers}"/>: <input type="text" th:field="*{answers}"/></p>
+                    <p>
+                        <input type="submit" value="Submit" class="btn btn-dark"/>
+                        <input type="reset" value="Reset" class="btn btn-danger"/>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <h3><span th:text="#{questioneseries.upload.questions}"/>:</h3>
+            <form action="#" th:action="@{/ui/user/series/addquestionscsv/{id}(id = ${currentseries.id})}"
+                  th:object="${newquestion}" method="post" enctype="multipart/form-data">
+                <div class="form-group mt-3">
+                    <label for="file">Select a CSV file</label>
+                    <input type="file" name="file" class="form-control-file" id="file" accept=".csv">
+                </div>
+                <p>
+                    <input type="submit" value="Submit" class="btn btn-dark"/>
+                    <input type="reset" value="Reset" class="btn btn-danger"/>
+                </p>
+            </form>
+        </div>
     </div>
-</form>
-
-
-<form action="#" th:action="@{/ui/user/series/addquestionscsv/{id}(id = ${currentseries.id})}"
-      th:object="${newquestion}" method="post" enctype="multipart/form-data">
-    <div class="form-group mt-3">
-        <label for="file">Select a CSV file</label>
-        <input type="file" name="file" class="form-control-file" id="file" accept=".csv">
+    <div class="row">
+        <a href="/">Back home</a>
     </div>
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
-</form>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th><span th:text="#{questionseries.questions}"/></th>
+                <th><span th:text="#{questionseries.answers}"/></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${questions.empty}">
+                <td colspan="2"><span th:text="#{questionseries.noquestionsyet}"/></td>
+            </tr>
+            <tr th:each="question : ${questions}">
+                <td><span th:text="${question.question}"> <span th:text="#{questionseries.questions}"/> </span></td>
+                <td>
+                    <ul>
+                    <th:block th:each="answer, itemStat : *{question.answers}">
+                        <li><span th:text="${answer}"/></li>
+                    </th:block>
+                    </ul>
+                </td>
+                <td><a th:href="@{/ui/user/series/removequestion/{id}(id = ${currentseries.id},qid=${question.id})}">
+                    <button type="button" class="btn btn-warning">Remove</button>
+                </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <p/>
+    </div>
 
-<a href="/">Back home</a>
 
+
+</div>
 </body>
 </html>

@@ -36,6 +36,9 @@ public class UserSeriesController {
     @Autowired
     private QuestionSeriesRepository seriesRepository;
 
+    @Autowired
+    private QuestionRepository questionRepository;
+
     @GetMapping("/addserie")
     public String createNewSerie(Model model) {
         model.addAttribute("newserie", new QuestionSeries());
@@ -59,6 +62,19 @@ public class UserSeriesController {
     @GetMapping("/questionseriedetails/{id}")
     public String editExistingSerie(Model model, @PathVariable Integer id) {
         QuestionSeries series = seriesRepository.findById(id).orElseThrow(() -> new RuntimeException("id " + id +  " not found"));
+        model.addAttribute("currentseries", series);
+        model.addAttribute("questions", series.getQuestions());
+        model.addAttribute("newquestion", new QuestionForm());
+        return "questionseriedetails";
+    }
+
+    @GetMapping("/removequestion/{id}")
+    public String removeQuestionFromSerie(Model model, @PathVariable Integer id, @RequestParam Integer qid) {
+        QuestionSeries series = seriesRepository.findById(id).orElseThrow(() -> new RuntimeException("id " + id +  " not found"));
+        ListQuestion question = questionRepository.findById(qid).orElseThrow(() -> new RuntimeException("id " + id +  " not found"));
+
+        series.removeQuestion(question);
+
         model.addAttribute("currentseries", series);
         model.addAttribute("questions", series.getQuestions());
         model.addAttribute("newquestion", new QuestionForm());

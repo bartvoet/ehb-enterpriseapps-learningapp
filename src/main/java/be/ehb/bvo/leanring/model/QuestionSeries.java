@@ -51,4 +51,8 @@ public class QuestionSeries {
     public Set<ListQuestion> getQuestions() {
         return this.questions;
     }
+
+    public void removeQuestion(ListQuestion question) {
+        this.questions.remove(question);
+    }
 }
