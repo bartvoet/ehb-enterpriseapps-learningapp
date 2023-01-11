@@ -2,18 +2,23 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>User creation</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
     <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
 <h2><span th:text="#{user.create}"/></h2>
+
+<a href="/" class="btn btn-info">Back home</a>
+
 <form action="#" th:action="@{/ui/user/create}" th:object="${newuser}" method="post">
-    <p>User: <input type="text" th:field="*{name}" /></p>
-    <p>Email: <input type="text" th:field="*{email}" /></p>
-    <p>Password: <input type="text" th:field="*{password}" /></p>
-    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    <div class="form-group">
+    <p>User: <input type="text" th:field="*{name}"/></p>
+    <p>Email: <input type="text" th:field="*{email}"/></p>
+    <p>Password: <input type="text" th:field="*{password}"/></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+        </div>
 </form>
 </body>
 </html>
