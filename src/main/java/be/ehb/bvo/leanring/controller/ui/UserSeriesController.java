@@ -46,15 +46,17 @@ public class UserSeriesController {
     @PostMapping("/addserie")
     public RedirectView createNewSerieSubmit(@ModelAttribute QuestionSeries newserie, Model model, Principal principal) {
         if(principal != null) {
+
             User user = userRepository.findByName(principal.getName());
             if(user != null) {
                 user.addSeries(newserie);
+                seriesRepository.save(newserie);
                 userRepository.save(user);
             }
         } else {
             logger.error("Not logged in...");
         }
-        return new RedirectView("/");
+        return new RedirectView("/ui/user/series/questionseriedetails/" + newserie.getId());
     }
 
     @GetMapping("/removeserie/{id}")
