@@ -74,6 +74,7 @@ public class UserSeriesController {
         ListQuestion question = questionRepository.findById(qid).orElseThrow(() -> new RuntimeException("id " + id +  " not found"));
 
         series.removeQuestion(question);
+        seriesRepository.save(series);
 
         model.addAttribute("currentseries", series);
         model.addAttribute("questions", series.getQuestions());
