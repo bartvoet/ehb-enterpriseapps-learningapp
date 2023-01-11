@@ -55,4 +55,8 @@ public class QuestionSeries {
     public void removeQuestion(ListQuestion question) {
         this.questions.remove(question);
     }
+
+    public void removeAllQuestions() {
+        this.questions.clear();
+    }
 }

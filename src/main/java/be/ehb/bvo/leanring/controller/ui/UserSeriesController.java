@@ -88,6 +88,19 @@ public class UserSeriesController {
         return "questionseriedetails";
     }
 
+    @GetMapping("/removeallquetionsfromserie/{id}")
+    public String removeAllQuestions(Model model, @PathVariable Integer id) {
+        QuestionSeries series = seriesRepository.findById(id).orElseThrow(() -> new RuntimeException("id " + id +  " not found"));
+        series.removeAllQuestions();
+        seriesRepository.save(series);
+
+        model.addAttribute("currentseries", series);
+        model.addAttribute("questions", series.getQuestions());
+        model.addAttribute("newquestion", new QuestionForm());
+
+        return "questionseriedetails";
+    }
+
     @GetMapping("/removequestion/{id}")
     public String removeQuestionFromSerie(Model model, @PathVariable Integer id, @RequestParam Integer qid) {
         QuestionSeries series = seriesRepository.findById(id).orElseThrow(() -> new RuntimeException("id " + id +  " not found"));
@@ -102,10 +115,8 @@ public class UserSeriesController {
         return "questionseriedetails";
     }
 
-
-
     @PostMapping("/addquestion/{id}")
-    public String adQuestion(@ModelAttribute QuestionForm question, Model model, @PathVariable Integer id) {
+    public String addQuestion(@ModelAttribute QuestionForm question, Model model, @PathVariable Integer id) {
         QuestionSeries series = seriesRepository.findById(id).orElseThrow(() -> new RuntimeException("id " + id +  " not found"));
         model.addAttribute("currentseries", series);
         model.addAttribute("questions", series.getQuestions());

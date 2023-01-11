@@ -57,7 +57,7 @@
             <tr>
                 <th><span th:text="#{questionseries.questions}"/></th>
                 <th><span th:text="#{questionseries.answers}"/></th>
-                <th></th>
+                <th><a th:text="'Remove all'" th:href="@{/ui/user/series/removeallquetionsfromserie/{id}(id = ${currentseries.id})}" class="btn btn-warning"/></th>
             </tr>
             </thead>
             <tbody>
