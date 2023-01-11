@@ -2,6 +2,7 @@ package be.ehb.bvo.leanring.model;
 
 import jakarta.persistence.*;
 
+import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class User {
 
   private String name;
 
+  @Email(message = "Email should be valid")
   private String email;
 
   public String getPassword() {
