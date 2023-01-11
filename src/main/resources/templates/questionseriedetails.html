@@ -24,9 +24,12 @@
                   th:object="${newquestion}" method="post">
                 <div class="form-group">
                     <p><span th:text="#{questionseries.questions}"/>: <input type="text" th:field="*{question}"/></p>
-                    <p><span th:text="#{questionseries.answers}"/>: <input type="text" th:field="*{answers}"/></p>
+                    <p><span th:text="#{questionseries.answers}"/>: <input type="text" th:field="*{answers}"/>
+                        <br/>(<span th:text="'Use ' + ${newquestion.token} + ' as separator for multiple answers.'"/>)
+                    </p>
+
                     <p>
-                        <input type="submit" value="Submit" class="btn btn-dark"/>
+                        <input type="submit" value="Add" class="btn btn-dark"/>
                         <input type="reset" value="Reset" class="btn btn-danger"/>
                     </p>
                 </div>
@@ -41,7 +44,7 @@
                     <input type="file" name="file" class="form-control-file" id="file" accept=".csv">
                 </div>
                 <p>
-                    <input type="submit" value="Submit" class="btn btn-dark"/>
+                    <input type="submit" value="Upload" class="btn btn-dark"/>
                     <input type="reset" value="Reset" class="btn btn-danger"/>
                 </p>
             </form>
