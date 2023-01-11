@@ -10,6 +10,7 @@
 <body>
 <h3>Next question: <span th:text="${questionandanswer.question}"/></h3>
 
+<a href="/" class="btn btn-info">Back home</a>
 
 <p th:if="${feedback != null && !feedback.isValid()}"
 th:text="'Previous answer was wrong, must be ' + ${feedback.getFeedback()}"
