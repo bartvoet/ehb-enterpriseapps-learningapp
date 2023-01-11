@@ -77,6 +77,7 @@ public class UserSessionController {
             model.addAttribute("questionandanswer", form);
             sessionRepository.save(session);
             model.addAttribute("qsession", session);
+            model.addAttribute("feedback", feedback);
             return new ModelAndView("questionsession");
         }
     }

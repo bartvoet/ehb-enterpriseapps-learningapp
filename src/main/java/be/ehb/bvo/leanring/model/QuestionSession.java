@@ -15,6 +15,8 @@ public class QuestionSession {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
 
+    private String name;
+
     public Integer getId()
     {
         return id;
@@ -68,6 +70,10 @@ public class QuestionSession {
         return this;
     }
 
+    public Integer getNumberOfRemainingQuestions() {
+        return this.remainingQuestions.size();
+    }
+
     public boolean isStarted() {
         return started;
     }
@@ -100,6 +106,14 @@ public class QuestionSession {
     public QuestionFeedback askAndValidate(QuestionInterface qi) {
         this.askNextQuestion(qi);
         return this.validateQuestion(qi);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

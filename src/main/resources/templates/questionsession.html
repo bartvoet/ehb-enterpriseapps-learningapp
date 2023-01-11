@@ -9,6 +9,19 @@
 </head>
 <body>
 <h3>Next question: <span th:text="${questionandanswer.question}"/></h3>
+
+
+<p th:if="${feedback != null && !feedback.isValid()}"
+th:text="'Previous answer was wrong, must be ' + ${feedback.getFeedback()}"
+   class="alert alert-danger"/>
+
+</p>
+<p th:if="${feedback != null && feedback.isValid()}"
+   class="alert alert-success">
+    Previous answer was OK
+</p>
+
+(<span th:text="${qsession.numberOfRemainingQuestions}"/> question(s) remaining.)<br/>
 (<span th:text="${questionandsize.size}"/> <span th:text="#{questionsession.answer.expected}"/>)<br/>
 
 <form action="#" th:action="@{/ui/user/session/{id}/question(id = ${qsession.id})}" th:object="${questionandanswer}" method="post">

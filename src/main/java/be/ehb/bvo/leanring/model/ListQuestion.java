@@ -47,7 +47,7 @@ public class ListQuestion extends Question {
 
     public QuestionFeedback validate(QuestionInterface qi) {
         List answers = qi.getListOfAnswers();
-        return new QuestionFeedback(this.answers.equals(answers));
+        return new QuestionFeedback(this.answers.equals(answers),this.answers.toString());
     }
 
     public QuestionFeedback askAndValidate(QuestionInterface qi) {
