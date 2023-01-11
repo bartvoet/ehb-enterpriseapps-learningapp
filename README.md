@@ -143,4 +143,33 @@ student                +--------------------+
 ~~~
 
 
-### 
+## Concepts
+
+### Security
+
+#### JPA
+
+#### BCrypt
+
+#### HTTPS
+
+### Config
+
+#### Profiles
+
+Extra prod/see config
+
+#### Docker and k8s
+
+#### Env-variables
+
+### Message-properties for i118n
+
+### CSV-upload and -download
+
+### Both rest and ui-controllers
+
+### Commandline-version
+
+
+(will send another document)
