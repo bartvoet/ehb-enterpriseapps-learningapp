@@ -11,10 +11,11 @@
 <h2><span th:text="#{serie.create}"/></h2>
 
 <a href="/" class="btn btn-info">Back home</a>
+<p/>
 
 <form action="#" th:action="@{/ui/user/series/addserie}" th:object="${newserie}" method="post">
     <p>Name: <input type="text" th:field="*{name}" /></p>
-    <p><input type="submit" class="btn btn-dark" value="Submit" /> <input type="reset" value="Reset" class="btn btn-danger"/></p>
+    <p><input type="submit" class="btn btn-dark" value="Create" /> <input type="reset" value="Reset" class="btn btn-danger"/></p>
 </form>
 </body>
 </html>
