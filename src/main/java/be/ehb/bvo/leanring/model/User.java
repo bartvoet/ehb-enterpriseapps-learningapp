@@ -68,4 +68,8 @@ public class User {
     this.questionsSessoions.add(session);
     return session;
   }
+
+    public void removeSerie(QuestionSeries series) {
+      this.questions.remove(series);
+    }
 }

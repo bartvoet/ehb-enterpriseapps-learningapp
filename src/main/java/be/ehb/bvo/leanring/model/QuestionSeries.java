@@ -31,7 +31,7 @@ public class QuestionSeries {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
     private String name;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.MERGE)
     private Set<ListQuestion> questions;
 
     public QuestionSeries() {

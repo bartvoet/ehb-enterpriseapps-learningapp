@@ -10,7 +10,6 @@ import be.ehb.bvo.leanring.repo.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,6 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.security.Principal;
 import java.util.Arrays;
 
@@ -59,6 +57,24 @@ public class UserSeriesController {
         return new RedirectView("/");
     }
 
+    @GetMapping("/removeserie/{id}")
+    public RedirectView removeSerie(Model model, @PathVariable Integer id, Principal principal) {
+        if(principal != null) {
+            User user = userRepository.findByName(principal.getName());
+            if(user != null) {
+                QuestionSeries series = seriesRepository.findById(id).orElseThrow(() -> new RuntimeException("id " + id +  " not found"));
+                user.removeSerie(series);
+                userRepository.save(user);
+            }
+        } else {
+            logger.error("Not logged in...");
+        }
+
+
+;
+        return new RedirectView("/");
+    }
+
     @GetMapping("/questionseriedetails/{id}")
     public String editExistingSerie(Model model, @PathVariable Integer id) {
         QuestionSeries series = seriesRepository.findById(id).orElseThrow(() -> new RuntimeException("id " + id +  " not found"));
@@ -81,6 +97,8 @@ public class UserSeriesController {
         model.addAttribute("newquestion", new QuestionForm());
         return "questionseriedetails";
     }
+
+
 
     @PostMapping("/addquestion/{id}")
     public String adQuestion(@ModelAttribute QuestionForm question, Model model, @PathVariable Integer id) {
