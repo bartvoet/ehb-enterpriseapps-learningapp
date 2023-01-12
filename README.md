@@ -290,25 +290,68 @@ server.ssl.key-alias=${SSL_ALIAS}
 server.ssl.enabled=true
 ~~~
 
-This is only activated in case of the production-profile
+This is only activated in case of the production-profile (see profiles-part)
 
 ### Config
 
 #### Profiles
 
-Extra prod/see config
+I made the distinction between a dev and prod-profile.  
+The production-profile can be activating by passing in an enivorment-variable
+with the following value
+
+~~~bash
+export spring_profiles_active=production
+~~~
+
+This will make sure that beside the application.properties also the
+application-production.properties is loaded.
+
+#### Externalisation through Env-variables
+
+In order to containirise all de environment-dependent stuff is injected through
+environment variables:
+
+~~~properties
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://${DB_HOST}/${DB_NAME}?useSSL=false&allowPublicKeyRetrieval=true
+spring.datasource.password=${DB_USERNAME}
+spring.datasource.username=${DB_PASSWORD}
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+~~~
+
+When starting the environment you have to foresee this (or configure them in IntelliJ)
+
+~~~bash
+export DB_USERNAME=learning
+export DB_PASSWORD=learning
+export DB_HOST=localhost
+export DB_PORT=3306
+export DB_NAME=learning
+export SSL_KEYFILE=/home/bart/learning.p12
+export SSL_PASSWORD=learning
+export SSL_ALIAS=learning
+java -jar ...
+~~~
 
 #### Docker and k8s
 
-#### Env-variables
+See [k8s-doc](doc/containerization/howtobuildandrun.md), Docker and deployment-files...
 
 ### Message-properties for i118n
 
+The infrastructure is put in place for internationalisation and applied in most of the places
+with Thymeleaf.
+
 ### CSV-upload and -download
+
+TODO
 
 ### Both rest and ui-controllers
 
+TODO
+
 ### Commandline-version
 
+TODO
 
-(will send another document)
