@@ -34,6 +34,8 @@ mvnw.cmd clean package -DskipTests
 docker-compose up --build
 ~~~
 
+Once the application is up and running you shoudl be able to access it at http://localhost:8080/
+
 ## Concept
 
 The **basic concept** is an build an **application** you can use to **prepare and test** yourself
