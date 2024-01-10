@@ -1,6 +1,39 @@
 
 # Learning-project
 
+## Running locally
+
+The applications provides support for k8s.  
+However for a quick start and local development you can run the application either locally
+or through docker-compose.
+
+### Through Docker compose
+
+#### Prerequisites
+
+* Install openjdk 17 or later (current version is 21)
+* Install docker (and compose)
+
+#### Build the application
+
+In a shell execute the following command from the root of the project
+
+~~~
+./mvnw clean package -DskipTests
+~~~
+
+If you happen to work on a Windows-system use
+
+~~~
+mvnw.cmd clean package -DskipTests
+~~~
+
+#### Run (with Docker)
+
+~~~
+docker-compose up --build
+~~~
+
 ## Concept
 
 The **basic concept** is an build an **application** you can use to **prepare and test** yourself
