@@ -31,6 +31,9 @@
                     <p>
                         <input type="submit" value="Add" class="btn btn-dark"/>
                         <input type="reset" value="Reset" class="btn btn-danger"/>
+                        <a th:href="@{/ui/user/session/startsession(seriesId = ${currentseries.id})}" class="btn btn-dark">
+                            Start session
+                        </a>
                     </p>
                 </div>
             </form>
